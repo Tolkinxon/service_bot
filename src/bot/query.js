@@ -1,5 +1,6 @@
 const UserModel = require("../models/User.model");
 const { bot } = require("./bot");
+const { fillMasterObject } = require("./handlers.js/master.handler");
 const { registerHandler, roleSelectionHandler } = require("./handlers.js/start.handler");
 
 bot.on('callback_query', async (query)=>{
@@ -10,4 +11,5 @@ bot.on('callback_query', async (query)=>{
 
     if(queryData == 'register') registerHandler(query);
     if(queryData.startsWith('role_')) roleSelectionHandler(query);
+    if(queryData.startsWith('category_')) fillMasterObject(query);
 })
